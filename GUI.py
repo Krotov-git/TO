@@ -1,6 +1,15 @@
 from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel, \
-    QPushButton, QCheckBox, QLineEdit, QCompleter, QWidget, QApplication
+    QPushButton, QCheckBox, QComboBox, QLineEdit, QCompleter, QWidget, QApplication
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPalette
 import sys
+
+app = QApplication([])
+app.setStyle('Windows')
+palette = QPalette()
+palette.setColor(QPalette.ButtonText, Qt.green)
+app.setPalette(palette)
+
 
 
 class TravelWindow(QMainWindow):
@@ -25,23 +34,35 @@ class TravelWindow(QMainWindow):
         spisok_operatorov = QCompleter(self.company_list, self.company)
         self.company.setCompleter(spisok_operatorov)
 
+        self.combo = QComboBox()
+        for i in self.data.keys():
+            self.combo.addItem(str(i))
+        self.combo.currentIndexChanged.connect(self.changeText)
+        
         grid = QGridLayout()
-        grid.addWidget(QLabel('Выберите Туроператора:'), 0, 0)
-        grid.addWidget(self.company, 0, 1)
-        grid.addWidget(QLabel('USD'), 0, 2)
-        grid.addWidget(self.check_usd, 0, 3)
-        grid.addWidget(QLabel('EUR'), 0, 4)
-        grid.addWidget(self.check_eur, 0, 5)
-        grid.addWidget(QLabel('Введите данные в у.е:'), 0, 6)
-        grid.addWidget(self.cost, 0, 7)
-        grid.addWidget(button_raschet, 0, 8)
-        grid.addWidget(self.check_eur, 0, 9)
-        grid.addWidget(self.calc_value, 0, 10)
+
+        grid.addWidget(QLabel('Введите название туроператора:'), 1, 0, 1, 4)
+        grid.addWidget(self.company, 2, 0, 1, 4)
+        grid.addWidget(QLabel('Выберите туроператора из списка:'), 3, 0, 1, 4)
+        grid.addWidget(self.combo, 4, 0, 1, 4)
+        grid.addWidget(QLabel('USD'), 5, 0)
+        grid.addWidget(self.check_usd, 5, 1)
+        grid.addWidget(QLabel('EUR'), 5, 2)
+        grid.addWidget(self.check_eur, 5, 3)
+        grid.addWidget(QLabel('Введите данные в у.е:'), 6, 0, 1, 4)
+        grid.addWidget(self.cost, 7, 0, 1, 4)
+        grid.addWidget(QLabel('Сумма в рублях:'), 8, 0, 1, 4)
+        grid.addWidget(self.calc_value, 9, 0, 1, 4)
+        grid.addWidget(button_raschet, 10, 0)
 
         central_widget = QWidget()
         central_widget.setLayout(grid)
         self.setCentralWidget(central_widget)
         self.show()
+
+
+    def changeText(self, index):
+        self.company.setText(self.combo.itemText(index))
 
     def calc_cost(self):
         value = self.cost.text()
@@ -53,7 +74,7 @@ class TravelWindow(QMainWindow):
         if self.check_eur.checkState() == 2:
             money = self.data[comp][1] #eur
 
-        value = float(value) * float(money)
+        value = round(float(value) * float(money), 2)
         self.calc_value.setText(str(value))
 
 

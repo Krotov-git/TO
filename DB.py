@@ -25,7 +25,7 @@ class DataBase:
             tds = tr.findAll("td")
             if len(tds) < 1:
                 continue
-            name = tds[0].text
+            name = tds[0].text.lower()
             usd = tds[1].text
             eur = tds[4].text
             db[name] = [usd, eur]
