@@ -3,12 +3,11 @@ from cx_Freeze import setup, Executable
 executables = [Executable('main.py',
 targetName='for_Level_Travel.exe',
 base='Win32GUI',
-icon='z.ico')]
+icon='L.ico')]
 
+includes = ['PyQt5.QtWidgets', 'PyQt5.QtCore', 'PyQt5.QtGui', 'requests', 'bs4', 'datetime', 'sys', 'GUI', 'DB']
 
-includes = ['QApplication', 'QMainWindow', 'QGridLayout', 'QLabel', 'QPushButton', 'QCheckBox', 'QLineEdit', 'QCompleter', 'QWidget', 'QApplication', 'sys', 'requests', 'BeautifulSoup', 'datetime', 'GUI', 'DB']
-
-zip_include_packages = ['QApplication', 'QMainWindow', 'QGridLayout', 'QLabel', 'QPushButton', 'QCheckBox', 'QLineEdit', 'QCompleter', 'QWidget', 'QApplication', 'sys', 'requests', 'BeautifulSoup', 'datetime', 'GUI', 'DB']
+zip_include_packages = ['PyQt5.QtWidgets', 'PyQt5.QtCore', 'PyQt5.QtGui', 'requests', 'bs4', 'datetime', 'sys', 'GUI', 'DB']
 
 include_files = ['L.ico']
 
@@ -22,7 +21,7 @@ options = {
 }
 }
 
-setup(name=' main',
+setup(name='for_Level.Travel',
 version='1.0',
 description='TO_app',
 executables=executables,

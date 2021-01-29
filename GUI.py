@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel, \
-    QPushButton, QCheckBox, QComboBox, QLineEdit, QCompleter, QWidget, QApplication
+    QPushButton, QCheckBox, QApplication, QComboBox, QLineEdit, QCompleter, QWidget
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette
 import sys
