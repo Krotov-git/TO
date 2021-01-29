@@ -9,7 +9,7 @@ includes = ['PyQt5.QtWidgets', 'PyQt5.QtCore', 'PyQt5.QtGui', 'requests', 'bs4',
 
 zip_include_packages = ['PyQt5.QtWidgets', 'PyQt5.QtCore', 'PyQt5.QtGui', 'requests', 'bs4', 'datetime', 'sys', 'GUI', 'DB']
 
-include_files = ['L.ico']
+include_files = ['L.ico', 'LT.png']
 
 options = {
 'build_exe': {

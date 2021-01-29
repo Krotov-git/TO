@@ -1,8 +1,9 @@
 from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel, \
     QPushButton, QCheckBox, QApplication, QComboBox, QLineEdit, QCompleter, QWidget
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPalette
+from PyQt5.QtGui import QPalette, QIcon
 import sys
+
 
 app = QApplication([])
 app.setStyle('Windows')
@@ -58,6 +59,8 @@ class TravelWindow(QMainWindow):
         central_widget = QWidget()
         central_widget.setLayout(grid)
         self.setCentralWidget(central_widget)
+        self.setGeometry(300, 300, 300, 320)
+        self.setWindowIcon(QIcon('LT.png'))
         self.show()
 
 
