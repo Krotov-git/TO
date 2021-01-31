@@ -1,13 +1,17 @@
+# подгружаю необходимые библиотеки
 import requests
 from bs4 import BeautifulSoup
 import datetime
 
-
+# создаю класс для парсинга данных с сайта
 class DataBase:
+
+# задаю атрибуты класса
     def __init__(self):
         self.site = 'https://pay.travel/site_controller_courses/index/?date='
         self.data = self.parse_site()
 
+    # функция осуществляющая непосредственный парсинг данных с сайта
     def parse_site(self):
         now = datetime.datetime.now()
         date = now.strftime("%Y-%m-%d")
@@ -20,6 +24,7 @@ class DataBase:
         soup = BeautifulSoup(response.text, features='lxml')
         trs = soup.findChildren("table")
 
+        # создаю саму базу данных по типу словаря где ключ название туроператора, а курс значение ключа
         db = {}
         for tr in trs[2]:
             tds = tr.findAll("td")

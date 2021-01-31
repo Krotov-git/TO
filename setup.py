@@ -1,7 +1,13 @@
+
+# setup.py - файл неучаствующий в логике и процессах программы,
+# необходим лишь для компиляцию ее в конечный продукт который можно устанавливать на других компьютерах
+
+# подгружаю необходимые библиотеки
 from cx_Freeze import setup, Executable
 
+# устанавливаем параметры
 executables = [Executable('main.py',
-targetName='for_Level_Travel.exe',
+targetName='for_Level_Travel.exe',      # название программы отображающееся в левом верхнем углу
 base='Win32GUI',
 icon='L.ico')]
 
