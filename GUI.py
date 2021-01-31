@@ -1,5 +1,4 @@
 # подгружаю необходимые библиотеки
-
 from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel, \
     QPushButton, QCheckBox, QApplication, QComboBox, QLineEdit, QCompleter, QWidget
 from PyQt5.QtCore import Qt
@@ -7,18 +6,15 @@ from PyQt5.QtGui import QPalette, QIcon
 import sys
 
 # устанвливаю стиль графического интерфейса
-
 app = QApplication([])
 app.setStyle('Windows')
 
 # устанавливаю цвет текста на кнопочных элементах
-
 palette = QPalette()
 palette.setColor(QPalette.ButtonText, Qt.green)
 app.setPalette(palette)
 
 # класс для отображения графического интерфейса и его элементов
-
 class TravelWindow(QMainWindow):
 
 # атрибуты класса
@@ -30,14 +26,6 @@ class TravelWindow(QMainWindow):
 
 # функция с элементами графического интерфейса
     def init_gui(self):
-
-        # кнопка расчитать
-        button_raschet = QPushButton('Рассчитать')
-        button_raschet.clicked.connect(self.calc_cost)
-
-        # элемент квадратик для галочки выбора валюты usd/eur
-        self.check_usd = QCheckBox()
-        self.check_eur = QCheckBox()
 
         # элемент позволяющий вводить/выводить текст
         self.cost = QLineEdit()
@@ -53,6 +41,14 @@ class TravelWindow(QMainWindow):
         for i in self.data.keys():
             self.combo.addItem(str(i))
         self.combo.currentIndexChanged.connect(self.changeText)
+
+        # элемент квадратик для галочки выбора валюты usd/eur
+        self.check_usd = QCheckBox()
+        self.check_eur = QCheckBox()
+
+        # кнопка расчитать
+        button_raschet = QPushButton('Рассчитать')
+        button_raschet.clicked.connect(self.calc_cost)
 
         # сеточный макет отвечающий за расположение элементов внутри графического интерфейса и их отображение
         grid = QGridLayout()
