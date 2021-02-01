@@ -1,6 +1,6 @@
 # подгружаю необходимые библиотеки
 from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel, \
-    QPushButton, QCheckBox, QApplication, QComboBox, QLineEdit, QCompleter, QWidget
+    QPushButton, QCheckBox, QApplication, QComboBox, QLineEdit, QCompleter, QWidget, QMessageBox
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QIcon
 import sys
@@ -17,14 +17,14 @@ app.setPalette(palette)
 # класс для отображения графического интерфейса и его элементов
 class TravelWindow(QMainWindow):
 
-# атрибуты класса
+    # атрибуты класса
     def __init__(self, data):
         super().__init__()
         self.company_list = data.keys()
         self.data = data
         self.init_gui()
 
-# функция с элементами графического интерфейса
+    # функция с элементами графического интерфейса
     def init_gui(self):
 
         # элемент позволяющий вводить/выводить текст
@@ -49,6 +49,8 @@ class TravelWindow(QMainWindow):
         # кнопка расчитать
         button_raschet = QPushButton('Рассчитать')
         button_raschet.clicked.connect(self.calc_cost)
+
+        self.msgBox = QMessageBox()
 
         # сеточный макет отвечающий за расположение элементов внутри графического интерфейса и их отображение
         grid = QGridLayout()
@@ -90,27 +92,33 @@ class TravelWindow(QMainWindow):
 
         # логотип программы в левом верхнем углу
         self.setWindowIcon(QIcon('LT.png'))
-
-
         self.show()
 
 
     def changeText(self, index):
         self.company.setText(self.combo.itemText(index))
 
-# функция производящая пересчет значения из у.е в рубли
+    # функция производящая пересчет значения из у.е в рубли
     def calc_cost(self):
         value = self.cost.text()
         comp = self.company.text()
         money = 0
 
         if self.check_usd.checkState() == 2:
-            money = self.data[comp][0] #usd
+                money = self.data[comp][0] #usd
         if self.check_eur.checkState() == 2:
-            money = self.data[comp][1] #eur
+                money = self.data[comp][1] #eur
 
         value = round(float(value) * float(money), 2)
         self.calc_value.setText(str(value))
+
+    # функция вызывает окно с вопросом о закрытии программы при попытки звкрыть ее нажав на крестик
+    def closeEvent(self, event):
+        reply = QMessageBox.question(self, 'Работа программы будет завершена!', "Вы хотите выйти из программы?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            event.accept()
+        else:
+            event.ignore()
 
 
 if __name__ == '__main__':
