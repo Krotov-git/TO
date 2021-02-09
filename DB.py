@@ -3,10 +3,11 @@ import requests
 from bs4 import BeautifulSoup
 import datetime
 
+
 # создаю класс для парсинга данных с сайта
 class DataBase:
 
-# задаю атрибуты класса
+    # задаю атрибуты класса
     def __init__(self):
         self.site = 'https://pay.travel/site_controller_courses/index/?date='
         self.data = self.parse_site()
@@ -39,6 +40,3 @@ class DataBase:
 
     def get_data(self):
         return self.data
-
-
-
