@@ -11,10 +11,11 @@ targetName='for_Level_Travel.exe',      # название программы о
 base='Win32GUI',
 icon='L.ico')]
 
+# записываем сюда все используемые в коде библиотеки
 includes = ['PyQt5.QtWidgets', 'PyQt5.QtCore', 'PyQt5.QtGui', 'requests', 'bs4', 'datetime', 'sys', 'GUI', 'DB']
-
 zip_include_packages = ['PyQt5.QtWidgets', 'PyQt5.QtCore', 'PyQt5.QtGui', 'requests', 'bs4', 'datetime', 'sys', 'GUI', 'DB']
 
+# прописываем название и расширение дополнительных файлов им=спользуемых в программе, расположенные в корне проекта
 include_files = ['L.ico', 'LT.png']
 
 options = {

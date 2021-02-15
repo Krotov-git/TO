@@ -9,14 +9,16 @@ class DataBase:
 
     # задаю атрибуты класса
     def __init__(self):
-        self.site = 'https://pay.travel/site_controller_courses/index/?date='
+       # self.site = 'https://pay.travel/site_controller_courses/index/?date='
+        self.site = 'https://www.tez-tour.com/'
         self.data = self.parse_site()
 
     # функция осуществляющая непосредственный парсинг данных с сайта
     def parse_site(self):
-        now = datetime.datetime.now()
-        date = now.strftime("%Y-%m-%d")
-        site = self.site + date
+        # now = datetime.datetime.now()
+        # date = now.strftime("%Y-%m-%d")
+        #site = self.site + date
+        site = 'https://www.tez-tour.com/'
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:45.0) Gecko/20100101 Firefox/45.0'
         }
@@ -27,14 +29,15 @@ class DataBase:
 
         # создаю саму базу данных по типу словаря где ключ название туроператора, а курс значение ключа
         db = {}
+        i = 0
         for tr in trs[2]:
-            tds = tr.findAll("td")
-            if len(tds) < 1:
-                continue
-            name = tds[0].text.lower()
-            usd = tds[1].text
-            eur = tds[4].text
-            db[name] = [usd, eur]
+            i += 1
+            if i == 4:
+                tds = tr.findAll("td")
+                name = 'TezTour'
+                usd = tds[1].text
+                eur = tds[2].text
+                db[name] = [usd[:-3], eur[:-3]]
 
         return db
 

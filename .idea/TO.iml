@@ -6,10 +6,10 @@
       <excludeFolder url="file://$MODULE_DIR$/TO_ver2" />
       <excludeFolder url="file://$MODULE_DIR$/ToToTo" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
-      <excludeFolder url="file://$MODULE_DIR$/virtualokru" />
       <excludeFolder url="file://$MODULE_DIR$/venv_for _LT" />
+      <excludeFolder url="file://$MODULE_DIR$/virtualokru" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.9 (TO)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (TO)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
