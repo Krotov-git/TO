@@ -122,7 +122,9 @@ class TravelWindow(QMainWindow):
 
 
 if __name__ == '__main__':
-    company_list = ['My company 1', 'My company 2', 'Your company 1']
+    company_list = ['My company 1',
+                    'My company 2',
+                    'Your company 1']
     usd = 75
     eur = 95
 

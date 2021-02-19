@@ -1,6 +1,7 @@
 # подгружаю необходимые библиотеки
 from GUI import TravelWindow
-from DB import DataBase
+# from DB import DataBase
+from Parsing.Site_TezTour import TezTour
 from PyQt5.QtWidgets import QApplication
 from PyQt5 import QtCore
 import sys
@@ -16,7 +17,7 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)
 
-    data = DataBase()
+    data = TezTour()
     window = TravelWindow(data.get_data())
 
     app.exec_()
