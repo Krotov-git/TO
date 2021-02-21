@@ -1,7 +1,7 @@
 # подгружаю необходимые библиотеки
 from GUI import TravelWindow
-# from DB import DataBase
-from Parsing.Site_TezTour import TezTour
+#from DB import DataBase
+from Parsing.Common_parsing import Common_Parser
 from PyQt5.QtWidgets import QApplication
 from PyQt5 import QtCore
 import sys
@@ -16,8 +16,10 @@ QtCore.QCoreApplication.setLibraryPaths(paths)
 if __name__ == '__main__':
 
     app = QApplication(sys.argv)
-
-    data = TezTour()
-    window = TravelWindow(data.get_data())
+    parser = Common_Parser()
+    parser.get_new_data()
+    #database = DataBase()
+    #database.set_data(parser.get_data)
+    window = TravelWindow(parser.get_new_data())
 
     app.exec_()

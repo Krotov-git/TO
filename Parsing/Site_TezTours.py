@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 
 
 # создаю класс для парсинга данных с сайта
-class TezTour:
-    #TODO: сущность туроператора TezTour
+class TezTours:
+    #TODO: сущность туроператора TezTours
 
     # задаю атрибуты класса
     def __init__(self):
@@ -23,18 +23,18 @@ class TezTour:
         trs = soup.findChildren("table")
 
         # создаю саму базу данных по типу словаря где ключ название туроператора, а курс значение ключа
-        db_teztour = {}
+        db_teztours = {}
         i = 0
         for tr in trs[2]:
             i += 1
             if i == 4:
                 tds = tr.findAll("td")
-                name = 'TezTour'
+                name = 'TezTours'
                 usd = tds[1].text
                 eur = tds[2].text
-                db_teztour[name] = [usd[:-3], eur[:-3]]
+                db_teztours[name] = [usd[:-4], eur[:-4]]
 
-        return db_teztour
+        return db_teztours
 
-    def get_data(self):
-        return self.data
+    # def get_data(self):
+    #     return self.data

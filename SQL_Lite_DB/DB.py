@@ -1,9 +1,42 @@
-# # подгружаю необходимые библиотеки
-# import requests
-# from bs4 import BeautifulSoup
-# import datetime
-#
-#
+
+
+class DataBase:
+    def __init__(self, ):
+        pass
+
+    def set_info(self):
+        pass
+
+    def get_info(self):
+        pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # # создаю класс для парсинга данных с сайта
 # class DataBase:
 #
@@ -43,3 +76,5 @@
 #
 #     def get_data(self):
 #         return self.data
+
+

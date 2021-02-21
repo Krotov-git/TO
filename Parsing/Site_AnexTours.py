@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 # создаю класс для парсинга данных с сайта
 class AnexTours:
-    #TODO: сущность туроператора AnexTour
+    #TODO: сущность туроператора AnexTours
 
     # задаю атрибуты класса
     def __init__(self):
@@ -28,12 +28,10 @@ class AnexTours:
 
         name = 'AnexTours'
         usd = spans[2].text
-        print(usd)
         eur = spans[3].text
-        print(eur)
         db_anextours[name] = [usd[4:], eur[4:]]
-
+        #print(db_anextours)
         return db_anextours
 
-    # def get_data(self):
-    #     return self.data
+if __name__ == '__main__':
+    pars = AnexTours()

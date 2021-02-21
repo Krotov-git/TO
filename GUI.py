@@ -5,6 +5,8 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QIcon
 import sys
 
+
+
 # устанвливаю стиль графического интерфейса
 app = QApplication([])
 app.setStyle('Windows')
@@ -18,10 +20,14 @@ app.setPalette(palette)
 class TravelWindow(QMainWindow):
 
     # атрибуты класса
-    def __init__(self, data):
+    def __init__(self, new_data):
         super().__init__()
-        self.company_list = data.keys()
-        self.data = data
+        # self.company_list = data.keys()
+        # self.data = data
+        # self.init_gui()
+
+        self.company_list = new_data.keys()
+        self.data = new_data
         self.init_gui()
 
     # функция с элементами графического интерфейса
