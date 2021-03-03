@@ -12,9 +12,9 @@ app = QApplication([])
 app.setStyle('Windows')
 
 # устанавливаю цвет текста на кнопочных элементах
-palette = QPalette()
-palette.setColor(QPalette.ButtonText, Qt.green)
-app.setPalette(palette)
+# palette = QPalette()
+# palette.setColor(QPalette.ButtonText, Qt.green)
+# app.setPalette(palette)
 
 # класс для отображения графического интерфейса и его элементов
 class TravelWindow(QMainWindow):

@@ -1,16 +1,42 @@
+import sqlite3
 
+connection = sqlite3.connect("database.db")
+cursor = connection.cursor()
 
 class DataBase:
-    def __init__(self, ):
-        pass
+    def __init__(self):
+        self.info = []
 
-    def set_info(self):
-        pass
+    def set_info(self, value1, value2, value3):
+        self.info.append(value1)
+        self.info.append(value2)
+        self.info.append(value3)
+
 
     def get_info(self):
-        pass
+        return self.info
 
+    def insert_info_db(self):  # связывется с дб и вносит в таблицу ои данные, открыть бд вставить данные закрыть бд
+        query = "INSERT into spisok_TO(Names_ТО, USD, EUR) values (?, ?, ?)"
+        cursor.execute(query, self.info)
+        connection.commit()
+        self.info.clear()
 
+    def get_from_db(self):     # спомощью селект получить данные из таблицы. преобразовать данныев нужный вид
+        cursor.execute("SELECT * FROM spisok_TO")
+        rows = cursor.fetchall()
+        #for row in rows:
+            #print("{0} {1} {2}".format(row[0], row[1], row[2]))
+        return rows
+        connection.commit()
+
+if __name__ == '__main__':
+    DB = DataBase()
+    DB.set_info('TezTours', '75', '92')
+    DB.insert_info_db()
+    DB.set_info('ICS', '72', '95')
+    DB.insert_info_db()
+    print('вывожу данные из БД', DB.get_from_db())
 
 
 

@@ -11,26 +11,29 @@ class Pegast:
 
     # функция осуществляющая непосредственный парсинг данных с сайта
     def parse_site(self):
-        db_pegast = {}
-        company_name = 'Pegast'
-
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:45.0) Gecko/20100101 Firefox/45.0'}
 
         response = requests.get(self.site, headers=headers)
         soup = BeautifulSoup(response.text, 'lxml')
         rates = soup.findAll('script')[4].contents[0].split(',')
-        usd = rates[14][7:12]
-        euro = rates[23][7:12]
+        #print('rates ==> ', rates)
 
-        ''' данные парсились 21.02, курс был 91.9 (с одним знаком после запятой), 
-            поэтому в качестве последнего символа выступает '}' кодом ниже мы 
-            заменяем '}' на символ '0'. Если у нас курс будет иметь два значка после 
-            запятой мы его не отрежем теперь.'''
+        db_pegast = {}
+
+        usd = rates[13][-5:-1]
+        #print('usd ==> ', usd)
+        euro = rates[22][-14:-8]
+        #print('euro ==> ', euro)
 
         if '}' in euro:
-            euro = euro.replace('}', '0')
+            euro = euro.replace('}', '1')
 
-        db_pegast[company_name] = [float(usd), float(euro)]
-
+        name = 'Pegast'
+        db_pegast[name] = [usd, euro]
+        #print(db_pegast)
         return db_pegast
+
+
+if __name__ == '__main__':
+    pars = Pegast()

@@ -7,10 +7,10 @@ cursor.execute("""CREATE TABLE spisok_TO
                    (Names_ТО text, USD real, EUR real);
                    """)
 
-#anextours = [('Test1', '71', '91')]
-
-#query = "INSERT into spisok_TO values (?, ?, ?)"
-#cursor.executemany(query, anextours)
+# anextours = [('Test1', '71', '91')]
+#
+# query = "INSERT into spisok_TO values (?, ?, ?)"
+# cursor.executemany(query, anextours)
 
 connection.commit()
 

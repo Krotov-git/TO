@@ -1,13 +1,12 @@
-# подгружаю необходимые библиотеки
 import requests
 from bs4 import BeautifulSoup
 
 
 # создаю класс для парсинга данных с сайта
-class AnexTours:
+class Inturist:
     # задаю атрибуты класса
     def __init__(self):
-        self.site = 'https://anextours.com/'
+        self.site = 'https://intourist.ru/'
         self.data = self.parse_site()
 
     # функция осуществляющая непосредственный парсинг данных с сайта
@@ -17,19 +16,24 @@ class AnexTours:
 
         response = requests.get(self.site, headers=headers)
         soup = BeautifulSoup(response.text, features='lxml')
-        spans = soup.findChildren("span")
+        divs = soup.findChildren("div", "footer__rate")
+        # print(divs)
 
-        # создаю саму базу данных по типу словаря где ключ название туроператора, а курс значение ключа
-        db_anextours = {}
+        db_inturist = {}
 
-        usd = spans[2].text
-        eur = spans[3].text
-
-        name = 'AnexTours'
-        db_anextours[name] = [usd[4:], eur[4:]]
-        #print(db_anextours)
-        return db_anextours
+        usd1 = divs[0].text
+        usd2 = usd1[-30:-23]
+        #         print('usd==> ', usd1)
+        #         print('usd==> ', usd2)
+        eur1 = divs[0].text
+        eur2 = eur1[-11:-4]
+        #         print('eur==> ', eur1)
+        #         print('eur==> ', eur2)
+        name = 'Intourist'
+        db_inturist[name] = [usd2, eur2]
+        #print(db_inturist)
+        return db_inturist
 
 
 if __name__ == '__main__':
-    pars = AnexTours()
+    pars = Inturist()

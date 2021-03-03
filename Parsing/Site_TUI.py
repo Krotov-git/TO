@@ -4,10 +4,10 @@ from bs4 import BeautifulSoup
 
 
 # создаю класс для парсинга данных с сайта
-class TezTours:
+class TUI:
     # задаю атрибуты класса
     def __init__(self):
-        self.site = 'https://www.tez-tour.com/'
+        self.site = 'https://agent.tui.ru/'
         self.data = self.parse_site()
 
     # функция осуществляющая непосредственный парсинг данных с сайта
@@ -19,21 +19,33 @@ class TezTours:
         trs = soup.findChildren("table")
 
         # создаю саму базу данных по типу словаря где ключ название туроператора, а курс значение ключа
-        db_teztours = {}
+        db_tui = {}
         i = 0
-        for tr in trs[2]:
+        for tr in trs[0]:
             i += 1
-            if i == 4:
-                tds = tr.findAll("td")
+            # print(i, '===========================================')
+            # print(tr)
+            if i == 5:
+                tdsE = tr.findAll("td")
+                # print('tdsE =', tdsE)
+                eur = tdsE[1].text
+                # print(eur)
+                if ',' in eur:
+                    eur = eur.replace(',', '.')
 
-                name = 'TezTours'
+            if i == 7:
+                tdsU = tr.findAll("td")
+                # print('tdsU =', tdsU)
+                usd = tdsU[1].text
+                # print(usd)
+                if ',' in usd:
+                    usd = usd.replace(',', '.')
 
-                usd = tds[1].text
-                eur = tds[2].text
-                db_teztours[name] = [usd[:-4], eur[:-4]]
-        #print(db_teztours)
-        return db_teztours
+                name = 'Tui'
+                db_tui[name] = [usd[:-1], eur[:-1]]
+        #print(db_tui)
+        return db_tui
 
 
 if __name__ == '__main__':
-    pars = TezTours()
+    pars = TUI()

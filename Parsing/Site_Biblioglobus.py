@@ -11,9 +11,6 @@ class Biblioglobus:
 
     # функция осуществляющая непосредственный парсинг данных с сайта
     def parse_site(self):
-        db_globus = {}
-        company_name = 'Biblio Globus'
-
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:45.0) Gecko/20100101 Firefox/45.0'}
 
@@ -21,6 +18,14 @@ class Biblioglobus:
         soup = BeautifulSoup(response.text, 'lxml')
         rates = soup.findAll('script').pop(0).contents[0].split(';')[7][35:47].split(',')
 
-        db_globus[company_name] = [float(rates[0]), float(rates[1])]
+        db_globus = {}
 
+        name = 'BiblioGlobus'
+        db_globus[name] = [float(rates[0]), float(rates[1])]
+
+        #print(db_globus)
         return db_globus
+
+
+if __name__ == '__main__':
+    pars = Biblioglobus()

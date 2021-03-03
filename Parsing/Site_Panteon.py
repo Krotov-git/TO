@@ -4,10 +4,10 @@ from bs4 import BeautifulSoup
 
 
 # создаю класс для парсинга данных с сайта
-class TezTours:
+class Panteon:
     # задаю атрибуты класса
     def __init__(self):
-        self.site = 'https://www.tez-tour.com/'
+        self.site = 'https://www.panteon.ru/'
         self.data = self.parse_site()
 
     # функция осуществляющая непосредственный парсинг данных с сайта
@@ -16,24 +16,21 @@ class TezTours:
 
         response = requests.get(self.site, headers=headers)
         soup = BeautifulSoup(response.text, features='lxml')
-        trs = soup.findChildren("table")
+        spans = soup.findChildren('span')
+        # print(spans)
 
-        # создаю саму базу данных по типу словаря где ключ название туроператора, а курс значение ключа
-        db_teztours = {}
-        i = 0
-        for tr in trs[2]:
-            i += 1
-            if i == 4:
-                tds = tr.findAll("td")
+        db_panteon = {}
 
-                name = 'TezTours'
+        usd = spans[2].text
+        # print(usd)
+        eur = spans[5].text
+        # print(eur)
 
-                usd = tds[1].text
-                eur = tds[2].text
-                db_teztours[name] = [usd[:-4], eur[:-4]]
-        #print(db_teztours)
-        return db_teztours
+        name = 'Panteon'
+        db_panteon[name] = [usd, eur]
 
+        #print(db_panteon)
+        return db_panteon
 
 if __name__ == '__main__':
-    pars = TezTours()
+    pars = Panteon()
