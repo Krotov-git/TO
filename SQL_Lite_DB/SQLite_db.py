@@ -1,6 +1,6 @@
 import sqlite3
 
-connection = sqlite3.connect("database.db")
+connection = sqlite3.connect("database1.db")
 cursor = connection.cursor()
 
 cursor.execute("DROP TABLE IF EXISTS spisok_TO")

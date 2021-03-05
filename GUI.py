@@ -20,14 +20,10 @@ app.setStyle('Windows')
 class TravelWindow(QMainWindow):
 
     # атрибуты класса
-    def __init__(self, new_data):
+    def __init__(self, baza):
         super().__init__()
-        # self.company_list = data.keys()
-        # self.data = data
-        # self.init_gui()
-
-        self.company_list = new_data.keys()
-        self.data = new_data
+        self.company_list = baza.keys()
+        self.data = baza
         self.init_gui()
 
     # функция с элементами графического интерфейса

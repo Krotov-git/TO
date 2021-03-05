@@ -1,6 +1,6 @@
 import sqlite3
 from Parsing.Common_parsing import Common_Parser
-connection = sqlite3.connect("database.db")
+connection = sqlite3.connect("database1.db")
 cursor = connection.cursor()
 
 class DataBase:
@@ -8,10 +8,9 @@ class DataBase:
         self.info = []
 
     def set_values_TO(self):
-        score = 0
+        j = Common_Parser()
+        i = j.get_new_data()
         for item in i.items():
-            print(item)
-            score += 1
             self.info.append(item[0])
             self.info.append(item[1][0])
             self.info.append(item[1][1])
@@ -21,27 +20,28 @@ class DataBase:
             connection.commit()
             self.info.clear()
 
-    def get_values_TO(self):     # спомощью селект получить данные из таблицы. преобразовать данныев нужный вид
+
+    def get_values_TO(self):
         cursor.execute("SELECT * FROM spisok_TO")
         rows = cursor.fetchall()
         self.db_TO = {}
         for row in rows:
-            #print(row[0], row[1], row[2])
             self.db_TO[row[0]] = [row[1], row[2]]
-        #print(db_TO)
-        return self.db_TO
+        self.baza = self.db_TO
+
 
     def get_current_data(self):
-        return self.db_TO
+        return self.baza
 
 
 if __name__ == '__main__':
-    DB = DataBase()
+    DaBa = DataBase()
     CP = Common_Parser()
     i = CP.get_new_data()
     #Test = {'TezTours': ['75.30', '90.70'], 'AnexTours': ['75.63', '91.17'], 'ICS': ['75.631', '91.16'], 'BiblioGlobus': ['75.63', '91.17'], 'Pegast': ['75.63', '91.171'], 'Tui': ['75.7 ', '91.2 '], 'Intourist': ['75.6311', '91.1657'], 'Panteon': ['75.6311', '91.1657']}
     #DB.set_values_TO()
-    #print(DB.get_values_TO())
+    DaBa.get_values_TO()
+    print('return!',DaBa.get_current_data())
 
 
 
