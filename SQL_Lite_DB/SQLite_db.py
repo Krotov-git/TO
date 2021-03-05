@@ -3,10 +3,12 @@ import sqlite3
 connection = sqlite3.connect("database.db")
 cursor = connection.cursor()
 
-cursor.execute("""CREATE TABLE spisok_TO
-                   (Names_ТО text, USD real, EUR real);
+cursor.execute("DROP TABLE IF EXISTS spisok_TO")
+cursor.execute("""CREATE TABLE IF NOT EXISTS spisok_TO
+                   (Names_ТО TEXT,
+                    USD REAL,
+                    EUR REAL);
                    """)
-
 # anextours = [('Test1', '71', '91')]
 #
 # query = "INSERT into spisok_TO values (?, ?, ?)"

@@ -1,5 +1,5 @@
 import sqlite3
-
+from Parsing.Common_parsing import Common_Parser
 connection = sqlite3.connect("database.db")
 cursor = connection.cursor()
 
@@ -7,56 +7,41 @@ class DataBase:
     def __init__(self):
         self.info = []
 
-    def set_info(self, value1, value2, value3):
-        self.info.append(value1)
-        self.info.append(value2)
-        self.info.append(value3)
+    def set_values_TO(self):
+        score = 0
+        for item in i.items():
+            print(item)
+            score += 1
+            self.info.append(item[0])
+            self.info.append(item[1][0])
+            self.info.append(item[1][1])
 
+            query = "INSERT into spisok_TO(Names_ТО, USD, EUR) values (?, ?, ?)"
+            cursor.execute(query, self.info)
+            connection.commit()
+            self.info.clear()
 
-    def get_info(self):
-        return self.info
-
-    def insert_info_db(self):  # связывется с дб и вносит в таблицу ои данные, открыть бд вставить данные закрыть бд
-        query = "INSERT into spisok_TO(Names_ТО, USD, EUR) values (?, ?, ?)"
-        cursor.execute(query, self.info)
-        connection.commit()
-        self.info.clear()
-
-    def get_from_db(self):     # спомощью селект получить данные из таблицы. преобразовать данныев нужный вид
+    def get_values_TO(self):     # спомощью селект получить данные из таблицы. преобразовать данныев нужный вид
         cursor.execute("SELECT * FROM spisok_TO")
         rows = cursor.fetchall()
-        #for row in rows:
-            #print("{0} {1} {2}".format(row[0], row[1], row[2]))
-        return rows
-        connection.commit()
+        self.db_TO = {}
+        for row in rows:
+            #print(row[0], row[1], row[2])
+            self.db_TO[row[0]] = [row[1], row[2]]
+        #print(db_TO)
+        return self.db_TO
+
+    def get_current_data(self):
+        return self.db_TO
+
 
 if __name__ == '__main__':
     DB = DataBase()
-    DB.set_info('TezTours', '75', '92')
-    DB.insert_info_db()
-    DB.set_info('ICS', '72', '95')
-    DB.insert_info_db()
-    print('вывожу данные из БД', DB.get_from_db())
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    CP = Common_Parser()
+    i = CP.get_new_data()
+    #Test = {'TezTours': ['75.30', '90.70'], 'AnexTours': ['75.63', '91.17'], 'ICS': ['75.631', '91.16'], 'BiblioGlobus': ['75.63', '91.17'], 'Pegast': ['75.63', '91.171'], 'Tui': ['75.7 ', '91.2 '], 'Intourist': ['75.6311', '91.1657'], 'Panteon': ['75.6311', '91.1657']}
+    #DB.set_values_TO()
+    #print(DB.get_values_TO())
 
 
 

@@ -45,7 +45,7 @@ class Common_Parser:
         self.db_common_parser.update(self.intu.parse_site())
         self.db_common_parser.update(self.pan.parse_site())
         self.new_data = self.db_common_parser
-        print('new_data :', self.new_data)
+        #print('new_data :', self.new_data)
 
     def get_new_data(self):
         return self.new_data

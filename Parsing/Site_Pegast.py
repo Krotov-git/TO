@@ -21,7 +21,7 @@ class Pegast:
 
         db_pegast = {}
 
-        usd = rates[13][-5:-1]
+        usd = rates[13][-6:-1]
         #print('usd ==> ', usd)
         euro = rates[22][-14:-8]
         #print('euro ==> ', euro)
