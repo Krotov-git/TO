@@ -1,13 +1,14 @@
 import sqlite3
 
-connection = sqlite3.connect("database1.db")
+connection = sqlite3.connect("database.db")
 cursor = connection.cursor()
 
 cursor.execute("DROP TABLE IF EXISTS spisok_TO")
 cursor.execute("""CREATE TABLE IF NOT EXISTS spisok_TO
                    (Names_ТО TEXT,
                     USD REAL,
-                    EUR REAL);
+                    EUR REAL,
+                    DataTime REAL);
                    """)
 # anextours = [('Test1', '71', '91')]
 #

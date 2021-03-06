@@ -17,8 +17,7 @@ if __name__ == '__main__':
 
     app = QApplication(sys.argv)
     parser = DataBase()
-    parser.get_values_TO()
-
-    window = TravelWindow(parser.get_current_data())
+    parser.set_values_TO()
+    window = TravelWindow(parser.get_values_TO())
 
     app.exec_()
