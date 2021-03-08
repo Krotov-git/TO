@@ -12,24 +12,27 @@ class DataBase:
         j = Common_Parser()
         i = j.get_new_data()
 
-        connection = sqlite3.connect("database.db")
+        connection = sqlite3.connect("SQL_Lite_DB/database.db")
         cursor = connection.cursor()
 
         cursor.execute("SELECT * FROM spisok_TO")
         rows = cursor.fetchall()
-        a = str(self.date)
-        DTSS = 0
-        aa = 0
+        now_date = str(self.date)
+        #print('now_date==> ', now_date)
+        self.spisok_table_date = []
+        self.spisok_now_date = []
 
         for row in rows:
-            DTS = row[3]
-            DTSS += int(DTS[-2:])
-            aa += int(a[-2:])
+            table_date = row[3]
+            #print('table_date==> ', table_date)
+            self.spisok_table_date.append(table_date)
+            self.spisok_now_date.append(now_date)
 
-        self.DTSSS = DTSS
-        self.aaa = aa
+        # print('spisok_table_date==> ', self.spisok_table_date)
+        # print('spisok_now_date==> ', self.spisok_now_date)
+        # print(self.spisok_now_date != self.spisok_table_date)
 
-        if self.DTSSS < self.aaa:
+        if self.spisok_now_date != self.spisok_table_date:
             cursor.execute("DELETE FROM spisok_TO")
             for item in i.items():
                 self.info.append(item[0])
@@ -46,7 +49,7 @@ class DataBase:
         connection.close()
 
     def get_values_TO(self):
-        connection = sqlite3.connect("database.db")
+        connection = sqlite3.connect("SQL_Lite_DB/database.db")
         cursor = connection.cursor()
 
         cursor.execute("SELECT * FROM spisok_TO")
