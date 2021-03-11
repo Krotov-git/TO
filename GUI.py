@@ -79,38 +79,38 @@ class TravelWindow(QMainWindow):
         # четвертая координата, на сколько столбцов растягивается элемент
 
         # строка ввода названия туроператора
-        grid.addWidget(QLabel('Введите имя ТО:'), 0, 4, 1, 4)
-        grid.addWidget(self.company, 1, 4, 1, 4)
+        grid.addWidget(QLabel('Введите имя ТО:'), 0, 4, 1, 2)
+        grid.addWidget(self.company, 1, 4, 1, 2)
 
         # "выпадающий список" с озможностью выбора туроператора без ввода текста
-        grid.addWidget(QLabel('Выберите имя ТО:'), 2, 4, 1, 4)
-        grid.addWidget(self.combo, 3, 4, 1, 4)
+        grid.addWidget(QLabel('Выберите имя ТО:'), 2, 4, 1, 2)
+        grid.addWidget(self.combo, 3, 4, 1, 2)
 
         # элемент выбора валюты
         grid.addWidget(QLabel('USD'), 4, 4, 1, 1)
         grid.addWidget(self.check_usd, 5, 4, 1, 1)
 
         # элемент выбора валюты
-        grid.addWidget(QLabel('EUR'), 4, 5, 1, 3)
-        grid.addWidget(self.check_eur, 5, 5, 1, 3)
+        grid.addWidget(QLabel('EUR'), 4, 5, 1, 1)
+        grid.addWidget(self.check_eur, 5, 5, 1, 1)
 
         # строка ввода данных в у.е для пересчета их в рубли
-        grid.addWidget(QLabel('Введите данные в у.е:'), 6, 4, 1, 4)
-        grid.addWidget(self.cost, 7, 4, 1, 4)
+        grid.addWidget(QLabel('Введите данные в у.е:'), 6, 4, 1, 2)
+        grid.addWidget(self.cost, 7, 4, 1, 2)
 
         # строка выводящая значение пересчитанное из у.е в рубли
-        grid.addWidget(QLabel('Сумма в рублях:'), 8, 4, 1, 4)
-        grid.addWidget(self.calc_value, 9, 4, 1, 4)
+        grid.addWidget(QLabel('Сумма в рублях:'), 8, 4, 1, 2)
+        grid.addWidget(self.calc_value, 9, 4, 1, 2)
 
         # кнопка при нажатии на которую происходит расчет
-        grid.addWidget(button_raschet, 10, 4, 1, 4)
+        grid.addWidget(button_raschet, 10, 4, 1, 2)
 
         # кнопка при нажатии на которую происходит вывод данных то в таблицу
-        grid.addWidget(button_table, 10, 0, 1, 4)
+        grid.addWidget(button_table, 10, 0, 1, 2)
 
         # таблица данных ТО
-        grid.addWidget(QLabel('Данных курсов ТО с датой (для сверки)'), 0, 0, 1, 4)
-        grid.addWidget(self.table, 1, 0, 9, 4)
+        grid.addWidget(QLabel('Данных курсов ТО с датой (для сверки)'), 0, 0, 1, 2)
+        grid.addWidget(self.table, 1, 0, 9, 2)
 
         central_widget = QWidget()
         central_widget.setLayout(grid)
@@ -123,6 +123,7 @@ class TravelWindow(QMainWindow):
         # логотип программы в левом верхнем углу
         self.setWindowIcon(QIcon('LT.png'))
 
+        # отлавливает сигналы установки галочек в чекбоксе и позволяет исключать одновременную установку обоих параметров
         self.check_usd.stateChanged.connect(self.state_usd)
         self.check_eur.stateChanged.connect(self.state_eur)
 

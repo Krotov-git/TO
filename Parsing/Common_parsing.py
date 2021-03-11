@@ -6,6 +6,8 @@ from Parsing.Site_Pegast import Pegast
 from Parsing.Site_TUI import TUI
 from Parsing.Site_Inturist import Inturist
 from Parsing.Site_Panteon import Panteon
+from Parsing.Site_Coral import Coral
+from Parsing.Site_Sunmar import Sunmar
 
 class Common_Parser:
     def __init__(self):
@@ -33,6 +35,13 @@ class Common_Parser:
         self.pan = Panteon()
         # print(self.tez.parse_site())
         # print('================')
+        self.cor = Coral()
+        # print(self.cor.parse_site())
+        # print('================')
+        self.sun = Sunmar()
+        # print(self.sun.parse_site())
+        # print('================')
+
 
         self.db_common_parser = {}
 
@@ -44,6 +53,9 @@ class Common_Parser:
         self.db_common_parser.update(self.tui.parse_site())
         self.db_common_parser.update(self.intu.parse_site())
         self.db_common_parser.update(self.pan.parse_site())
+        self.db_common_parser.update(self.cor.parse_site())
+        self.db_common_parser.update(self.sun.parse_site())
+
         self.new_data = self.db_common_parser
         #print('new_data :', self.new_data)
 
