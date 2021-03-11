@@ -79,50 +79,62 @@ class TravelWindow(QMainWindow):
         # четвертая координата, на сколько столбцов растягивается элемент
 
         # строка ввода названия туроператора
-        grid.addWidget(QLabel('Введите имя ТО:'), 1, 0, 1, 5)
-        grid.addWidget(self.company, 2, 0, 1, 5)
+        grid.addWidget(QLabel('Введите имя ТО:'), 0, 4, 1, 4)
+        grid.addWidget(self.company, 1, 4, 1, 4)
 
         # "выпадающий список" с озможностью выбора туроператора без ввода текста
-        grid.addWidget(QLabel('Выберите имя ТО:'), 3, 0, 1, 5)
-        grid.addWidget(self.combo, 4, 0, 1, 5)
+        grid.addWidget(QLabel('Выберите имя ТО:'), 2, 4, 1, 4)
+        grid.addWidget(self.combo, 3, 4, 1, 4)
 
         # элемент выбора валюты
-        grid.addWidget(QLabel('USD'), 5, 0, 1, 2)
-        grid.addWidget(self.check_usd, 6, 0, 1, 2)
+        grid.addWidget(QLabel('USD'), 4, 4, 1, 1)
+        grid.addWidget(self.check_usd, 5, 4, 1, 1)
 
         # элемент выбора валюты
-        grid.addWidget(QLabel('EUR'), 5, 2, 1, 4)
-        grid.addWidget(self.check_eur, 6, 2, 1, 4)
+        grid.addWidget(QLabel('EUR'), 4, 5, 1, 3)
+        grid.addWidget(self.check_eur, 5, 5, 1, 3)
 
         # строка ввода данных в у.е для пересчета их в рубли
-        grid.addWidget(QLabel('Введите данные в у.е:'), 7, 0, 1, 5)
-        grid.addWidget(self.cost, 8, 0, 1, 5)
+        grid.addWidget(QLabel('Введите данные в у.е:'), 6, 4, 1, 4)
+        grid.addWidget(self.cost, 7, 4, 1, 4)
 
         # строка выводящая значение пересчитанное из у.е в рубли
-        grid.addWidget(QLabel('Сумма в рублях:'), 9, 0, 1, 5)
-        grid.addWidget(self.calc_value, 10, 0, 1, 5)
+        grid.addWidget(QLabel('Сумма в рублях:'), 8, 4, 1, 4)
+        grid.addWidget(self.calc_value, 9, 4, 1, 4)
 
         # кнопка при нажатии на которую происходит расчет
-        grid.addWidget(button_raschet, 11, 0, 1, 5)
+        grid.addWidget(button_raschet, 10, 4, 1, 4)
 
         # кнопка при нажатии на которую происходит вывод данных то в таблицу
-        grid.addWidget(button_table, 11, 6, 1, 1)
+        grid.addWidget(button_table, 10, 0, 1, 4)
 
         # таблица данных ТО
-        grid.addWidget(QLabel('Данных курсов ТО и дата, для сверки'), 1, 6, 1, 1)
-        grid.addWidget(self.table, 2, 6, 9, 1)
+        grid.addWidget(QLabel('Данных курсов ТО с датой (для сверки)'), 0, 0, 1, 4)
+        grid.addWidget(self.table, 1, 0, 9, 4)
 
         central_widget = QWidget()
         central_widget.setLayout(grid)
         self.setCentralWidget(central_widget)
 
         # устанавливаем параметры размера окна и его расположения при запуске программы
-        self.setGeometry(300, 300, 390, 300)  # первые два значения расположение окна программы н экране при запуске
+        self.setGeometry(300, 300, 470, 350)  # первые два значения расположение окна программы н экране при запуске
                                               # последние два значения ширина и высота окна программы
 
         # логотип программы в левом верхнем углу
         self.setWindowIcon(QIcon('LT.png'))
+
+        self.check_usd.stateChanged.connect(self.state_usd)
+        self.check_eur.stateChanged.connect(self.state_eur)
+
         self.show()
+
+    def state_usd(self):
+        if self.check_usd.checkState() == 2:
+            self.check_eur.setCheckState(0)
+
+    def state_eur(self):
+        if self.check_eur.checkState() == 2:
+            self.check_usd.setCheckState(0)
 
     def changeText(self, index):
         self.company.setText(self.combo.itemText(index))
@@ -134,11 +146,16 @@ class TravelWindow(QMainWindow):
         money = 0
 
         if self.check_usd.checkState() == 2:
-            self.check_eur.setChecked(False)
-            money = self.data[comp][0] #usd
+            try:
+                money = self.data[comp][0] #usd
+            except:
+                self.calc_value.setText("Введено некорректное имя ТО")
+
         if self.check_eur.checkState() == 2:
-            self.check_usd.setChecked(False)
-            money = self.data[comp][1] #eur
+            try:
+                money = self.data[comp][1] #eur
+            except:
+                self.calc_value.setText("Введено некорректное имя ТО")
 
         try:
             if float(value) >= 0:
@@ -171,7 +188,7 @@ class TravelWindow(QMainWindow):
                     indicator_eur.append(j)
                 if indicator_if == 2:
                     jss = js[2]
-                    self.table.setItem(len(indicator_date), 3, QTableWidgetItem(str(jss[-5:])))
+                    self.table.setItem(len(indicator_date), 3, QTableWidgetItem(str(jss[2:])))
                     indicator_date.append(j)
                 indicator_if += 1
 
