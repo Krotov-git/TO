@@ -31,7 +31,7 @@ class Sunmar:
                 usd = tds[4].text
                 eur = tds[1].text
                 db_sunmar[name] = [usd, eur]
-        print(db_sunmar)
+        #print(db_sunmar)
         return db_sunmar
 
 

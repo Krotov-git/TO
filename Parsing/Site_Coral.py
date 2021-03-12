@@ -31,7 +31,7 @@ class Coral:
                 usd = tds[4].text
                 eur = tds[1].text
                 db_coral[name] = [usd, eur]
-        print(db_coral)
+        #print(db_coral)
         return db_coral
 
 

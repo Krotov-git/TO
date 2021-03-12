@@ -20,20 +20,46 @@ includes = ['PyQt5.QtWidgets',
             'datetime',
             'sys',
             'GUI',
-            'DB']
+            'SQL_Lite_DB.DB',
+            'sqlite3',
+            'PyQt5',
+            'Parsing.Common_parsing',
+            'Parsing.Site_TezTours',
+            'Parsing.Site_AnexTours',
+            'Parsing.Site_ICS',
+            'Parsing.Site_Biblioglobus',
+            'Parsing.Site_Pegast',
+            'Parsing.Site_TUI',
+            'Parsing.Site_Inturist',
+            'Parsing.Site_Panteon',
+            'Parsing.Site_Coral',
+            'Parsing.Site_Sunmar']
 
 zip_include_packages = ['PyQt5.QtWidgets',
-                        'PyQt5.QtCore',
-                        'PyQt5.QtGui',
-                        'requests',
-                        'bs4',
-                        'datetime',
-                        'sys',
-                        'GUI',
-                        'DB']
+            'PyQt5.QtCore',
+            'PyQt5.QtGui',
+            'requests',
+            'bs4',
+            'datetime',
+            'sys',
+            'GUI',
+            'SQL_Lite_DB.DB',
+            'sqlite3',
+            'PyQt5',
+            'Parsing.Common_parsing',
+            'Parsing.Site_TezTours',
+            'Parsing.Site_AnexTours',
+            'Parsing.Site_ICS',
+            'Parsing.Site_Biblioglobus',
+            'Parsing.Site_Pegast',
+            'Parsing.Site_TUI',
+            'Parsing.Site_Inturist',
+            'Parsing.Site_Panteon',
+            'Parsing.Site_Coral',
+            'Parsing.Site_Sunmar']
 
-# прописываем название и расширение дополнительных файлов им=спользуемых в программе, расположенные в корне проекта
-include_files = ['L.ico', 'LT.png']
+# прописываем название и расширение дополнительных файлов используемых в программе, расположенные в корне проекта
+include_files = ['L.ico', 'LT.png', 'SQL_Lite_DB/database.db', 'SQL_Lite_DB/DB.py', 'SQL_Lite_DB/SQLite_db.py', ]
 
 options = {'build_exe': {'include_msvcr': True,
                          'includes': includes,
